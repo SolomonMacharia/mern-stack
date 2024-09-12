@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const ProductSchema = mongoose.Schema.create(
+const ProductSchema = mongoose.Schema(
     {
     name: {
         type: "string",
@@ -16,7 +16,7 @@ const ProductSchema = mongoose.Schema.create(
     }
     },
     {
-    timestaps: true //createdAt, updatedAt
+    timestamps: true //createdAt, updatedAt
     }
 );
 
