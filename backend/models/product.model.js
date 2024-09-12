@@ -19,3 +19,6 @@ const ProductSchema = mongoose.Schema.create(
     timestaps: true //createdAt, updatedAt
     }
 );
+
+const Product = mongoose.model("Product", ProductSchema);
+export default Product;
