@@ -29,7 +29,6 @@ app.post("/api/products", async(req, res) => {
         console.log("Error in create product", err.message);
         return res.status(500).json({success: false, message: "Server error"});
     }
-    
 })
 
 app.listen(port || 5000 , () => {
