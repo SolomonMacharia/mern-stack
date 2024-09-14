@@ -31,6 +31,30 @@ app.post("/api/products", async(req, res) => {
     }
 })
 
+app.get('/api/products', async (req, res) => {
+    try {
+        const products = await Product.find({});
+        res.status(200).json({total: products.length, products: products});
+    } catch (err) {
+        console.log(err, err.message)
+        res.status(404).json({success: false, message: 'Products not found!'});
+    }
+})
+
+app.delete('/api/products/:id', async(req, res) => {
+    //first destructure the id from the url
+    const {id} = req.params;
+
+    //delete the product from the database
+    try {
+        await Product.findByIdAndDelete(id);
+        res.status(200).json({success: true, message:'Product deleted successfully'})
+    } catch (err) {
+        console.log(err.message)
+        res.status(404).json({success: false, message: 'Product not found!'})
+    }
+})
+
 app.listen(port || 5000 , () => {
     connectDB();
     console.log(`listening on port ${port}`)
