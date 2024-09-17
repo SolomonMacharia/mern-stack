@@ -41,6 +41,17 @@ app.get('/api/products', async (req, res) => {
     }
 })
 
+app.get('/api/products/:id', async(req, res) => {
+    const {id} = req.params;
+
+    try {
+        const product = await Product.findById(id);
+        res.status(200).json({success:true, product: product })
+    } catch(err) {
+        res.status(404).json({success:false, message: `Produce with id ${id} not found!`})
+    }
+})
+
 app.delete('/api/products/:id', async(req, res) => {
     //first destructure the id from the url
     const {id} = req.params;
